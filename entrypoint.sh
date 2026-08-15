@@ -1,0 +1,1 @@
+gunicorn --config gunicorn.conf.py src.fastapi_adventures.app:app
