@@ -23,6 +23,9 @@ jobs:
       run: uv sync --locked --all-extras
     - name: Building web app
       uses: azure/appservice-build@v2
+      with:
+        platform: python
+        platform-version: 3.14
     - name: Deploy web App using GH Action azure/webapps-deploy
       uses: azure/webapps-deploy@v3
       with:
