@@ -1,0 +1,7 @@
+alembic
+fastapi[standard]
+gunicorn
+psycopg2-binary
+sqlalchemy
+uvicorn
+websockets
