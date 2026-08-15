@@ -42,10 +42,17 @@ async def get_vote(
         .where(Vote.slide_id == vote_data.slide_id)
         .where(Vote.session_id == vote_data.session_id)
     )
+    print("fetching existing vote data")
+    print(vote_data)
+    print(vote_data.audience_id)
+    print(vote_data.slide_id)
+    print(vote_data.session_id)
+
     existing_vote = db.scalar(stmt)
+    print(existing_vote)
 
     if existing_vote:
-        PublicVote.model_validate(existing_vote, from_attributes=True)
+        return PublicVote.model_validate(existing_vote, from_attributes=True)
 
     return None
 
