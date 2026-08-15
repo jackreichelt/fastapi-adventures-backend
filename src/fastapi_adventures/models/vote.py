@@ -16,9 +16,9 @@ class Vote(Base):
 
     # Relationships
     slide_id: Mapped[int] = mapped_column(ForeignKey("slides.id"))
-    slide: Mapped["Slide"] = relationship()
+    slide: Mapped[Slide] = relationship()
     session_id: Mapped[int] = mapped_column(ForeignKey("presentation_sessions.id"))
-    session: Mapped["PresentationSession"] = relationship()
+    session: Mapped[PresentationSession] = relationship()
 
 
 class PublicVote(BaseModel):
@@ -29,8 +29,8 @@ class PublicVote(BaseModel):
     id: int
     audience_id: str
     option_id: int
-    slide: "PublicSlide"
-    session: "PublicPresentationSession"
+    slide: PublicSlide
+    session: PublicPresentationSession
 
 
 class CreateVote(BaseModel):
