@@ -6,6 +6,7 @@ from sqlalchemy import select
 
 from ..db import get_db
 from ..models.slide import CreateSlide, PublicSlide, Slide
+from ..websockets.connection_manager import get_audience_connections
 
 router = APIRouter(
     prefix="/slides",
@@ -16,6 +17,7 @@ router = APIRouter(
 @router.get("/{slide_id}", response_model=PublicSlide)
 async def get_slide(
     db: get_db,
+    audience_connections: get_audience_connections,
     slide_id: Annotated[int, Path()],
 ) -> PublicSlide:
     """
@@ -27,6 +29,7 @@ async def get_slide(
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Slide not found")
 
     # TODO: broadcast new slide change message to audience
+    await audience_connections.broadcast(f"Slide changed: {slide.id}")
 
     return PublicSlide.model_validate(slide, from_attributes=True)
 
