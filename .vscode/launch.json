@@ -1,0 +1,66 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Locally",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "src.fastapi_adventures:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8080",
+                "--log-level",
+                "debug"
+            ],
+        },
+        {
+            "name": "Alembic: Migrate local db",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src",
+            "module": "alembic",
+            "args": [
+                "upgrade",
+                "head"
+            ],
+        },
+        {
+            "name": "Alembic: Generate migrations",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src",
+            "module": "alembic",
+            "args": [
+                "revision",
+                "--autogenerate",
+                "-m",
+                "${input:migration_message}"
+            ],
+        },
+        {
+            "name": "Alembic: Undo latest migration",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src",
+            "module": "alembic",
+            "args": [
+                "downgrade",
+                "-1"
+            ],
+        },
+    ],
+    "inputs": [
+        {
+            "id": "migration_message",
+            "type": "promptString",
+            "description": "What message should the new migration have?"
+        },
+    ]
+}
