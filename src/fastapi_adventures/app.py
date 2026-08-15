@@ -12,7 +12,7 @@ app = FastAPI(swagger_ui_parameters={"persistAuthorization": True}, docs_url="")
 # TODO: Work out a better, more restrictive configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "http://localhost:5173", "https://fastapi-adventures.vercel.app/"],
+    allow_origins=["http://localhost:8080", "http://localhost:5173", "https://jackreichelt.github.io/fastapi-adventures-frontend/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
