@@ -6,7 +6,7 @@ from .routers import presentation_sessions, slide_decks, slides, votes
 from .websockets import audience, presenter
 from .websockets.connection_manager import get_audience_connections, get_presenter_connections
 
-app = FastAPI(swagger_ui_parameters={"persistAuthorization": True}, docs_url="/docs")
+app = FastAPI(swagger_ui_parameters={"persistAuthorization": True}, docs_url="")
 
 # Configure the CORs middleware
 # TODO: Work out a better, more restrictive configuration
