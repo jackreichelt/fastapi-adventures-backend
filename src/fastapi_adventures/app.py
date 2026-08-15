@@ -43,9 +43,9 @@ for ws in ws_routers:
 count = 0
 
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello from FastAPI on Vercel"}
+# @app.get("/")
+# def read_root():
+#     return {"message": "Hello from FastAPI on Vercel"}
 
 
 @app.post("/count")
