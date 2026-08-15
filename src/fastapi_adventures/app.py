@@ -6,13 +6,18 @@ from .routers import presentation_sessions, slide_decks, slides, votes
 from .websockets import audience, presenter
 from .websockets.connection_manager import get_audience_connections, get_presenter_connections
 
-app = FastAPI(swagger_ui_parameters={"persistAuthorization": True}, docs_url="")
+app = FastAPI(swagger_ui_parameters={"persistAuthorization": True}, docs_url="/")
 
 # Configure the CORs middleware
 # TODO: Work out a better, more restrictive configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "http://localhost:5173", "https://jackreichelt.github.io/fastapi-adventures-frontend/"],
+    allow_origins=[
+        "http://localhost:8080",
+        "http://localhost:5173",
+        "https://jackreichelt.github.io",
+        "https://fastapi-adventures-atf2a8hnhecsa3c8.australiaeast-01.azurewebsites.net",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
