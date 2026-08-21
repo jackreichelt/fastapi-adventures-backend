@@ -29,19 +29,19 @@ presenter_connections = ConnectionManager("presenters")
 audience_connections = ConnectionManager("audience")
 
 
-async def _get_presenter_connections():
+async def yield_presenter_connections():
     """
     Yields a session. Sessions are a transactional connection to the database.
     """
     yield presenter_connections
 
 
-async def _get_audience_connections():
+async def yield_audience_connections():
     """
     Yields a session. Sessions are a transactional connection to the database.
     """
     yield audience_connections
 
 
-get_presenter_connections = Annotated[ConnectionManager, Depends(_get_presenter_connections)]
-get_audience_connections = Annotated[ConnectionManager, Depends(_get_audience_connections)]
+get_presenter_connections = Annotated[ConnectionManager, Depends(yield_presenter_connections)]
+get_audience_connections = Annotated[ConnectionManager, Depends(yield_audience_connections)]
