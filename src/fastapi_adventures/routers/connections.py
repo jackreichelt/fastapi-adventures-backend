@@ -1,9 +1,9 @@
+import json
 from typing import Annotated
 
 from fastapi import APIRouter, Body, Query
 
 from ..db import get_db
-from ..models.pubsub_event import PubsubEvent
 from ..websockets.pubsub import get_pubsub_service
 
 router = APIRouter(
@@ -31,9 +31,12 @@ async def test_receive_message(
     db: get_db,
     event: Annotated[str, Body()],
 ):
-    print("Event received:")
+    event_data = json.loads(event)
+    print("Test received:")
     print(event)
+    print("Audience ID:", event_data["audience_id"])
+    print("Option:", event_data["option"])
 
-    new_event = PubsubEvent(hub="hub", event=event)
-    db.add(new_event)
-    db.commit()
+    # new_event = PubsubEvent(hub="hub", event=event)
+    # db.add(new_event)
+    # db.commit()
