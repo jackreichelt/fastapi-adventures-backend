@@ -16,7 +16,11 @@ async def get_slide(
     audience_id: Annotated[str, Query()],
     mode: Annotated[str, Query()] = "audience",
 ):
-    token = pubsub_service.get_client_access_token(user_id=audience_id, roles=[mode])
+    token = pubsub_service.get_client_access_token(
+        user_id=audience_id,
+        groups=[mode],
+        roles=["webpubsub.sendToGroup", "webpubsub.joinLeaveGroup"],
+    )
     return token
 
 
