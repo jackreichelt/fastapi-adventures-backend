@@ -6,9 +6,10 @@ from sqlalchemy import create_engine
 from alembic import context
 from fastapi_adventures.db import Base
 from fastapi_adventures.models.presentation_session import PresentationSession as PresentationSession
+from fastapi_adventures.models.pubsub_event import PubsubEvent as PubsubEvent
 from fastapi_adventures.models.slide import Slide as Slide
+from fastapi_adventures.models.slide_deck import SlideDeck as SlideDeck
 from fastapi_adventures.models.vote import Vote as Vote
-from src.fastapi_adventures.models.slide_deck import SlideDeck as SlideDeck
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

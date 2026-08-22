@@ -2,9 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.fastapi_adventures.routers import connections
-
-from .routers import presentation_sessions, slide_decks, slides, votes
+from .routers import connections, presentation_sessions, slide_decks, slides, votes
 from .websockets import audience, presenter
 from .websockets.connection_manager import get_audience_connections, get_presenter_connections
 
