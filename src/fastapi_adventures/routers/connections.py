@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Body, Query
 
 from ..db import get_db
 from ..models.pubsub_event import PubsubEvent
@@ -29,12 +29,11 @@ async def get_slide(
 @router.post("/test")
 async def test_receive_message(
     db: get_db,
-    hub: Annotated[str, Query()],
-    event: Annotated[str, Query()],
+    event: Annotated[str, Body()],
 ):
-    print(f"Event received in {hub}:")
+    print("Event received:")
     print(event)
 
-    new_event = PubsubEvent(hub=hub, event=event)
+    new_event = PubsubEvent(hub="hub", event=event)
     db.add(new_event)
     db.commit()
