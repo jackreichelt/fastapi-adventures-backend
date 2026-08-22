@@ -1,7 +1,7 @@
 import json
 from typing import Annotated
 
-from fastapi import APIRouter, Body, Query
+from fastapi import APIRouter, Body, Query, Request, Response
 
 from ..db import get_db
 from ..websockets.pubsub import get_pubsub_service
@@ -24,6 +24,15 @@ async def get_slide(
         roles=["webpubsub.sendToGroup", "webpubsub.joinLeaveGroup"],
     )
     return token
+
+
+@router.options("/validate")
+async def validate_webhook_request_origin(
+    request: Request,
+    response: Response,
+):
+    response.headers["WebHook-Allowed-Origin"] = request.headers["WebHook-Request-Origin"]
+    return "OK"
 
 
 @router.post("/test")
