@@ -1,4 +1,5 @@
 alembic
+azure-messaging-webpubsubservice
 fastapi[standard]
 gunicorn
 psycopg2-binary
