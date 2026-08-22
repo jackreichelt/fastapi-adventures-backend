@@ -31,14 +31,14 @@ audience_connections = ConnectionManager("audience")
 
 async def yield_presenter_connections():
     """
-    Yields a session. Sessions are a transactional connection to the database.
+    Yields a ConnectionManager. ConnectionManager are pools of raw websocket connections.
     """
     yield presenter_connections
 
 
 async def yield_audience_connections():
     """
-    Yields a session. Sessions are a transactional connection to the database.
+    Yields a ConnectionManager. ConnectionManager are pools of raw websocket connections.
     """
     yield audience_connections
 
