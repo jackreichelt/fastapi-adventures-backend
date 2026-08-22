@@ -13,9 +13,10 @@ router = APIRouter(
 @router.get("/negotiate")
 async def get_slide(
     pubsub_service: get_pubsub_service,
+    audience_id: Annotated[str, Query()],
     mode: Annotated[str, Query()] = "audience",
 ):
-    token = pubsub_service.get_client_access_token(roles=[mode])
+    token = pubsub_service.get_client_access_token(user_id=audience_id, roles=[mode])
     return token
 
 
